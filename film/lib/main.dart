@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:film/screens/home_screen.dart';
 
 void main() {
-  runApp(const MainApp());
+  runApp(const film());
 }
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+class film extends StatelessWidget {
+  const film({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Film',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
       ),
+      home: HomeScreen(),
     );
   }
-} dddddddddddddddd
+}
