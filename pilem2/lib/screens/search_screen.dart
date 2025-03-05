@@ -1,74 +1,120 @@
 import 'package:flutter/material.dart';
-import 'package:pilem2/main.dart';
-import 'package:pilem2/screens/home_screen.dart';
-import 'package:pilem2/screens/search_screen.dart';
-import 'package:pilem2/screens/favorite_screen.dart';
+import 'package:pilem2/models/movie.dart';
+import 'package:pilem2/screens/detail_screen.dart';
+import 'package:pilem2/services/api_service.dart';
+import 'package:pilem2/models/movie.dart';
 
-void main() => runApp(const MyApp());
+class SearchScreen extends StatefulWidget {
+  const SearchScreen({super.key});
+  @override
+  SearchScreenState createState() => SearchScreenState();
+}
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class SearchScreenState extends State<SearchScreen> {
+  final ApiService _apiService = ApiService();
+  final TextEditingController _searchController = TextEditingController();
+  List<Movie> _searchResults = [];
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Pilem',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
-        useMaterial3: true,
-      ),
-      home: const MainScreen(),
-    );
+  void initState() {
+    super.initState();
+    _searchController.addListener(_searchMovies);
   }
-}
-
-class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
-
   @override
-  MainScreenState createState() => MainScreenState();
-}
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
+  void _searchMovies() async {
+    if (_searchController.text.isEmpty) {
+      setState(() {
+        _searchResults.clear();
+      });
+    return;
+  }
 
-class MainScreenState extends State<MainScreen> {
-  int _selectedIndex = 0;
-
-  final List<Widget> _screens = [
-    const HomeScreen(),
-    const SearchScreen(),
-    const FavoriteScreen(),
-  ];
-
-  void _onItemTapped(int index) {
+    final List<Map<String, dynamic>> searchData = await _apiService.searchMovies(_searchController.text);
     setState(() {
-      _selectedIndex = index;
+      _searchResults = searchData.map((e) => Movie.fromJson(e)).toList();
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _screens[_selectedIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'Search',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
-            label: 'Favorite',
-          ),
-        ],
-        selectedItemColor: Colors.blue, // Warna ikon yang dipilih
-        unselectedItemColor: Colors.grey, // Warna ikon yang tidak dipilih
-        showUnselectedLabels: true, // Menampilkan label meskipun tidak dipilih
+      appBar: AppBar(
+        title: const Text('Search'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(8.0),
+              decoration: BoxDecoration(
+                border: Border.all(
+                color: Colors.grey,
+                width: 1.0,
+                ),
+                borderRadius: BorderRadius.circular(5.0),
+              ),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      controller: _searchController,
+                      decoration: const InputDecoration(
+                        hintText: 'Search movies...',
+                        border: InputBorder.none,
+                      ),
+                    ),
+                  ),
+
+                  Visibility(
+                    visible: _searchController.text.isNotEmpty,
+                    child: IconButton(
+                      icon: const Icon(Icons.clear),
+                      onPressed: () {
+                        _searchController.clear();
+                        setState(() {
+                          _searchResults.clear();
+                        });
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 16),
+            Expanded(
+              child: ListView.builder(
+                itemCount: _searchResults.length,
+                itemBuilder: (context, index) {
+                  final Movie movie = _searchResults[index];
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 4),
+                    child: ListTile(
+                      leading: Image.network('https://image.tmdb.org/t/p/w500${movie.posterPath}',
+                        height: 50,
+                        width: 50,
+                        fit: BoxFit.cover,
+                      ),
+                      title: Text(movie.title),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => DetailScreen(movie:movie),
+                          ),
+                        );
+                      },
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -1,64 +1,29 @@
-import 'package:flutter/material.dart';
-import 'package:pilem2/main.dart';
-import 'package:pilem2/screens/home_screen.dart';
-import 'package:pilem2/screens/search_screen.dart';
-import 'package:pilem2/screens/favorite_screen.dart';
-void main() => runApp(const MyApp());
-class MyApp extends StatelessWidget {
-const MyApp({super.key});
-@override
-Widget build(BuildContext context) {
-return MaterialApp(
-debugShowCheckedModeBanner: false,
-title: 'Pilem',
-theme: ThemeData(
-colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
-useMaterial3: true,
-),
-home: const MainScreen(),
-);
-}
-}
-class MainScreen extends StatefulWidget {
-const MainScreen({super.key});
-@override
-MainScreenState createState() => MainScreenState();
-}
-class MainScreenState extends State<MainScreen> {
-int _selectedIndex = 0;
-final List<Widget> _screens = [
-const HomeScreen(),
-const SearchScreen(),
-const FavoriteScreen(),
-];
-void _onItemTapped(int index) {
-setState(() {
-_selectedIndex = index;
-});
-}
-@override
-Widget build(BuildContext context) {
-return Scaffold(
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
-body: _screens[_selectedIndex],
-bottomNavigationBar: BottomNavigationBar(
-currentIndex: _selectedIndex,
-onTap: _onItemTapped,
-items: const <BottomNavigationBarItem>[
-BottomNavigationBarItem(
-icon: Icon(Icons.home),
-label: 'Home',
-),
-BottomNavigationBarItem(
-icon: Icon(Icons.search),
-label: 'Search',
-),
-BottomNavigationBarItem(
-icon: Icon(Icons.favorite),
-label: 'Favorite',
-),
-],
-),
-);
-}
+class ApiService {
+  static const String baseUrl = "https://api.themoviedb.org/3";
+  static const String apiKey = '5b749704025f16f6e32578040142103f';
+
+  Future <List<Map<String, dynamic>>> getAllMovies() async {
+    final response = await http.get(Uri.parse("$baseUrl/movie/now_playing?api_key=$apiKey"));
+    final data = json.decode(response.body);
+    return List<Map<String, dynamic>>.from(data['results']);
+  }
+
+  Future <List<Map<String, dynamic>>> getTrendingMovies() async {
+    final response = await http.get(Uri.parse("$baseUrl/trending/movie/week?api_key=$apiKey"));
+    final data = json.decode(response.body);
+    return List<Map<String, dynamic>>.from(data['results']);
+  }
+  Future <List<Map<String, dynamic>>> getPopularMovies() async {
+    final response = await http.get(Uri.parse("$baseUrl/movie/popular?api_key=$apiKey"));
+    final data = json.decode(response.body);
+    return List<Map<String, dynamic>>.from(data['results']);
+  }
+  Future<List<Map<String, dynamic>>> searchMovies(String query) async {
+    final response = await http.get(Uri.parse("$baseUrl/search/movie?query=$query&api_key=$apiKey"));
+    final data = json.decode(response.body);
+    return List<Map<String, dynamic>>.from(data['results']);
+  }
 }
