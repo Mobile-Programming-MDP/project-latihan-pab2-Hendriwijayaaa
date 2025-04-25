@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fasum/screens/sign_in_screen.dart';
+import 'package:fasum/screens/signin_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -23,15 +23,19 @@ class HomeScreen extends StatelessWidget {
 
   Future<void> signOut(BuildContext context) async {
     await FirebaseAuth.instance.signOut();
+
     Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => const SignInScreen()));
+      MaterialPageRoute(
+        builder: (context) => const SigninScreen(),
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Home"),
+        title: const Text('Home'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         actions: [
           IconButton(
@@ -39,61 +43,56 @@ class HomeScreen extends StatelessWidget {
               signOut(context);
             },
             icon: const Icon(Icons.logout),
-          )
+          ),
         ],
       ),
       body: StreamBuilder(
-        stream: FirebaseFirestore.instance
-            .collection("posts")
-            //.orderBy('createdAt', descending: true)
-            .snapshots(),
-        builder: (context, snapshot) {
-          if (!snapshot.hasData)
-            return Center(child: CircularProgressIndicator());
+          stream: FirebaseFirestore.instance
+              .collection("posts")
+              //.orderBy('createdAt', descending: true)
+              .snapshots(),
+          builder: (context, snapshot) {
+            if (!snapshot.hasData)
+              return Center(child: CircularProgressIndicator());
 
-          final posts = snapshot.data!.docs;
-          return ListView.builder(
-            itemCount: posts.length,
-            itemBuilder: (contex, index) {
-              final data = posts[index].data();
-              //final imageBase64 = data['image'] ?? '';
-              final description = data['description'] ?? '';
-              //final createdAtStr = data['cratedAt'] ?? '';
-              final fullName = data['fullName'] ?? 'Anonim';
+            final posts = snapshot.data!.docs;
+            return ListView.builder(
+                itemCount: posts.length,
+                itemBuilder: (context, index) {
+                  final data = posts[index].data();
+                  final imageBase64 = data['image'];
+                  final description = data['description'];
+                  //final createdAtStrs = data['ratedAt'];
+                  final fullName = data['fullName'] ?? 'Anonim';
 
-              //parse ke DateTime
-              //final createdAt = DateTime.parse(createdAtStr);
-              return Card(
-                margin: const EdgeInsets.all(10),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      fullName,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                      ),
+                  //parse ke DateTime
+                  //final createdAt DateTime.parse(createdAtStrs);
+                  return Card(
+                    margin: const EdgeInsets.all(10),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          fullName,
+                          style: const TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.w500),
+                        ),
+                        const SizedBox(
+                          height: 6,
+                        ),
+                        Text(
+                          description ?? '',
+                          style: const TextStyle(fontSize: 16),
+                        ),
+                      ],
                     ),
-                    const SizedBox(height: 6),
-                    Text(
-                      description ?? '',
-                      style: const TextStyle(fontSize: 16),
-                    )
-                  ],
-                ),
-              );
-            },
-          );
-        },
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: const Icon(Icons.add),
-      ),
+                  );
+                });
+          }),
+      floatingActionButton:
+          FloatingActionButton(onPressed: () {}, child: const Icon(Icons.add)),
     );
   }
 }
