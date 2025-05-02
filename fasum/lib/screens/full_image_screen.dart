@@ -13,7 +13,7 @@ class FullImageScreen extends StatelessWidget {
       body: GestureDetector(
         onTap: () {
           Navigator.pop(context);
-        },
+        },//d
         child: Center(
           child: InteractiveViewer(
             child: Image.memory(
