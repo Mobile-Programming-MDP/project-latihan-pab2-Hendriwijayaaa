@@ -1,46 +1,66 @@
 {
   "project_info": {
-    "project_number": "203940600113",
-    "firebase_url": "https://first-app-8c352-default-rtdb.firebaseio.com",
-    "project_id": "first-app-8c352",
-    "storage_bucket": "first-app-8c352.firebasestorage.app"
+    "project_number": "535726058169",
+    "firebase_url": "https://fasum-d8b29-default-rtdb.firebaseio.com",
+    "project_id": "fasum-d8b29",
+    "storage_bucket": "fasum-d8b29.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:203940600113:android:b9f7ed9bccd77c0c787810",
+        "mobilesdk_app_id": "1:535726058169:android:7936f9dbe91616d14cc968",
         "android_client_info": {
-          "package_name": "com.example.daftar_belanja"
+          "package_name": "com.example.fasum"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "535726058169-fe529ipl54tuenpkjr7ddl2c1oi6mm9m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
-          "current_key": "AIzaSyDvWFsMmT_-h69CpdCkSG6hrsCweIdwg_Q"
+          "current_key": "AIzaSyCA5VNyR9O85V13e8l4H8zl83lPtU1O9cg"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "535726058169-fe529ipl54tuenpkjr7ddl2c1oi6mm9m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:203940600113:android:997aa44c99368b5b787810",
+        "mobilesdk_app_id": "1:535726058169:android:076c92b19f7c4e814cc968",
         "android_client_info": {
-          "package_name": "com.example.fasum"
+          "package_name": "fasum.app"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "535726058169-fe529ipl54tuenpkjr7ddl2c1oi6mm9m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
-          "current_key": "AIzaSyDvWFsMmT_-h69CpdCkSG6hrsCweIdwg_Q"
+          "current_key": "AIzaSyCA5VNyR9O85V13e8l4H8zl83lPtU1O9cg"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "535726058169-fe529ipl54tuenpkjr7ddl2c1oi6mm9m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

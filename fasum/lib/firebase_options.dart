@@ -23,15 +23,9 @@ class DefaultFirebaseOptions {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for ios - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       case TargetPlatform.windows:
         return windows;
       case TargetPlatform.linux:
@@ -47,34 +41,56 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyB0R63KN2p8K7pUbnp_89sUs9PR5pQhcpk',
-    appId: '1:203940600113:web:172791216bd3316c787810',
-    messagingSenderId: '203940600113',
-    projectId: 'first-app-8c352',
-    authDomain: 'first-app-8c352.firebaseapp.com',
-    databaseURL: 'https://first-app-8c352-default-rtdb.firebaseio.com',
-    storageBucket: 'first-app-8c352.firebasestorage.app',
-    measurementId: 'G-7VWKHH4BJK',
+    apiKey: 'AIzaSyAeLImfVTBz2k3sDMGM9ufcFO3HbYD4JBU',
+    appId: '1:535726058169:web:bd1bd01101800c854cc968',
+    messagingSenderId: '535726058169',
+    projectId: 'fasum-d8b29',
+    authDomain: 'fasum-d8b29.firebaseapp.com',
+    databaseURL: 'https://fasum-d8b29-default-rtdb.firebaseio.com',
+    storageBucket: 'fasum-d8b29.firebasestorage.app',
+    measurementId: 'G-KJJNM72691',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDvWFsMmT_-h69CpdCkSG6hrsCweIdwg_Q',
-    appId: '1:203940600113:android:997aa44c99368b5b787810',
-    messagingSenderId: '203940600113',
-    projectId: 'first-app-8c352',
-    databaseURL: 'https://first-app-8c352-default-rtdb.firebaseio.com',
-    storageBucket: 'first-app-8c352.firebasestorage.app',
+    apiKey: 'AIzaSyCA5VNyR9O85V13e8l4H8zl83lPtU1O9cg',
+    appId: '1:535726058169:android:7936f9dbe91616d14cc968',
+    messagingSenderId: '535726058169',
+    projectId: 'fasum-d8b29',
+    databaseURL: 'https://fasum-d8b29-default-rtdb.firebaseio.com',
+    storageBucket: 'fasum-d8b29.firebasestorage.app',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyB0R63KN2p8K7pUbnp_89sUs9PR5pQhcpk',
-    appId: '1:203940600113:web:172791216bd3316c787810',
-    messagingSenderId: '203940600113',
-    projectId: 'first-app-8c352',
-    authDomain: 'first-app-8c352.firebaseapp.com',
-    databaseURL: 'https://first-app-8c352-default-rtdb.firebaseio.com',
-    storageBucket: 'first-app-8c352.firebasestorage.app',
-    measurementId: 'G-7VWKHH4BJK',
+    apiKey: 'AIzaSyAeLImfVTBz2k3sDMGM9ufcFO3HbYD4JBU',
+    appId: '1:535726058169:web:973a7f7b66a55da14cc968',
+    messagingSenderId: '535726058169',
+    projectId: 'fasum-d8b29',
+    authDomain: 'fasum-d8b29.firebaseapp.com',
+    databaseURL: 'https://fasum-d8b29-default-rtdb.firebaseio.com',
+    storageBucket: 'fasum-d8b29.firebasestorage.app',
+    measurementId: 'G-HP25CNNW8C',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyCRYmDHbjTqJ9JE64_1KiiHvvahfNc5cQA',
+    appId: '1:535726058169:ios:17803a882922dac04cc968',
+    messagingSenderId: '535726058169',
+    projectId: 'fasum-d8b29',
+    databaseURL: 'https://fasum-d8b29-default-rtdb.firebaseio.com',
+    storageBucket: 'fasum-d8b29.firebasestorage.app',
+    iosClientId: '535726058169-48sdp853ln6qjdpah5lmgojpurgmrhhr.apps.googleusercontent.com',
+    iosBundleId: 'com.example.fasum',
+  );
+
+  static const FirebaseOptions ios = FirebaseOptions(
+    apiKey: 'AIzaSyCRYmDHbjTqJ9JE64_1KiiHvvahfNc5cQA',
+    appId: '1:535726058169:ios:17803a882922dac04cc968',
+    messagingSenderId: '535726058169',
+    projectId: 'fasum-d8b29',
+    databaseURL: 'https://fasum-d8b29-default-rtdb.firebaseio.com',
+    storageBucket: 'fasum-d8b29.firebasestorage.app',
+    iosClientId: '535726058169-48sdp853ln6qjdpah5lmgojpurgmrhhr.apps.googleusercontent.com',
+    iosBundleId: 'com.example.fasum',
   );
 
 }
