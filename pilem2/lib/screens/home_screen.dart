@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pilem2/models/movie.dart';
-import 'package:pilem2/services/api_service.dart';
-import 'package:pilem2/models/movie.dart';
-import 'package:pilem2/services/api_service.dart';
+import 'package:pilem/models/movie.dart';
+import 'package:pilem/services/api_service.dart';
 
 import 'detail_screen.dart';
 
