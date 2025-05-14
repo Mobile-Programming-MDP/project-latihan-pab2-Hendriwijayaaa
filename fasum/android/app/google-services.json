@@ -30,6 +30,13 @@
             {
               "client_id": "535726058169-fe529ipl54tuenpkjr7ddl2c1oi6mm9m.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "535726058169-48sdp853ln6qjdpah5lmgojpurgmrhhr.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.fasum"
+              }
             }
           ]
         }
@@ -59,6 +66,13 @@
             {
               "client_id": "535726058169-fe529ipl54tuenpkjr7ddl2c1oi6mm9m.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "535726058169-48sdp853ln6qjdpah5lmgojpurgmrhhr.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.fasum"
+              }
             }
           ]
         }

@@ -1,6 +1,6 @@
 import 'package:fasum/screens/home_screen.dart';
-import 'package:fasum/screens/signin_screen.dart';
-import 'package:fasum/screens/signup_screen.dart';
+import 'package:fasum/screens/sign_in_screen.dart';
+import 'package:fasum/screens/sign_up_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
