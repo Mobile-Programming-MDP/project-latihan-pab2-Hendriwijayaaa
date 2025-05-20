@@ -325,10 +325,11 @@ class _HomeScreenState extends State<HomeScreen> {
           .snapshots();
     } else {
       // Return posts filtered by the selected category
-       print("Filter by Category ${selectedCategory}");
+      print("Filter by Category ${selectedCategory}");
       return FirebaseFirestore.instance
           .collection("posts")
           .where("category", isEqualTo: selectedCategory)
+          .where("userId", isNotEqualTo: _currentUserId)
           .orderBy('createdAt', descending: true)
           .snapshots();
     }
@@ -380,7 +381,7 @@ class _HomeScreenState extends State<HomeScreen> {
             if (snapshot.hasError) {
               print("Trapped in has error ${!snapshot.hasData}");
               print("${snapshot.error}");
-            
+
               return Center(child: Text('Error: ${snapshot.error}'));
             }
 
@@ -389,8 +390,6 @@ class _HomeScreenState extends State<HomeScreen> {
               //print("Data " + snapshot.data!.docs.length.toString());
               return const Center(child: CircularProgressIndicator());
             }
-            
-
 
             final posts = snapshot.data!.docs;
             //.where((doc) {
@@ -505,8 +504,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                               Icons.thumb_up,
                                               size: 20,
                                               color: (data['likes'] ?? [])
-                                                      .contains(
-                                                          _currentUserId)
+                                                      .contains(_currentUserId)
                                                   ? Colors.blue
                                                   : Colors.grey,
                                             ),
@@ -540,8 +538,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                               Icons.comment,
                                               size: 20,
                                               color: (data['comments'] ?? [])
-                                                      .contains(
-                                                          _currentUserId)
+                                                      .contains(_currentUserId)
                                                   ? Colors.blue
                                                   : Colors.grey,
                                             ),
