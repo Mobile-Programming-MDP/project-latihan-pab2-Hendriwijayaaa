@@ -5,7 +5,6 @@ import 'package:fasum/screens/add_post_screen.dart';
 import 'package:fasum/screens/detail_screen.dart';
 import 'package:fasum/screens/edit_post_screen.dart';
 import 'package:fasum/screens/my_posts_screen.dart';
-import 'package:fasum/screens/my_posts_screen.dart';
 import 'package:fasum/screens/sign_in_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
